@@ -1,0 +1,30 @@
+version: "3"
+services:
+  heading-service:
+    build:
+      context: ./
+      args:
+        ENV_NAME: heading-env
+        GID: 3053
+        UID: 3053
+        USER_NAME: ug2196145
+    container_name: heading-container
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    volumes:
+      - type: bind
+        source: ./
+        target: /workspace/
+      - type: bind
+        source: /raid/data/00_students/ug2196145/gt1205_dataset/
+        target: /gt1205_dataset/
+        read_only: True
+      - type: bind
+        source: /raid/data/00_students/ug2196145/topcon_dataset/
+        target: /topcon_dataset/
+        read_only: True
+    shm_size: 10.24gb
+    tty: True

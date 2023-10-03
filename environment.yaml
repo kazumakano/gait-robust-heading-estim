@@ -1,0 +1,25 @@
+channels:
+  - nvidia
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - gputil
+  - ipykernel
+  - matplotlib
+  - numpy
+  - pandas
+  - pip
+  - pytorch
+  - pytorch-cuda=11.7
+  - pytorch-lightning
+  - pyyaml
+  - scipy
+  - pip:
+    - ray[air]
+    - ray[default]
+    - ray[tune]
+    - slack_bolt
+    - tensorboard
+    - torch-tb-profiler
