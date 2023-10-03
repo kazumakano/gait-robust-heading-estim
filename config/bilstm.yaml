@@ -1,4 +1,5 @@
 batch_size: 512
+epoch: 100
 num_workers: 4
 
 lstm_dp: 0.5
