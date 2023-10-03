@@ -1,0 +1,9 @@
+batch_size: 512
+num_workers: 4
+
+conv_ch_l: 128
+conv_ch_s: 32
+conv_dp: 0.5
+conv_ks_s: 9
+fc_ch: 32
+lstm_hs: 64

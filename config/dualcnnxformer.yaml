@@ -1,0 +1,8 @@
+batch_size: 512
+num_workers: 4
+
+conv_ks_s: 9
+xformer_d_ff: 64
+xformer_d_model: 64
+xformer_n_layers: 3
+xformer_nhead: 4

@@ -1,0 +1,6 @@
+batch_size: 512
+num_workers: 4
+
+lstm_dp: 0.5
+lstm_hs: 128
+lstm_n_layers: 2
