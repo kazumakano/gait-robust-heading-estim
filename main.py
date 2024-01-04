@@ -3,7 +3,7 @@ from glob import glob
 from typing import Optional
 import pytorch_lightning as pl
 import torch
-from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 import script.utility as util
 from script.data import DataModule
