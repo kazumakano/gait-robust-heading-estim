@@ -2,7 +2,7 @@
 This is the implementation of the paper [Gait-Robust Heading Estimation Using Horizontal Acceleration for Smartphone-based PDR](https://ceur-ws.org/Vol-3581/191_WiP.pdf).
 
 <div align="center">
-    <img alt="overview" src="https://github.com/kazumakano/gait-robust-heading-estim/assets/78717643/ba033488-c38e-43cf-ad0a-62b188788305" width="60%" />
+    <img alt="overview" src="https://github.com/kazumakano/gait-robust-heading-estim/assets/78717643/ba033488-c38e-43cf-ad0a-62b188788305" width="80%" />
 </div>
 
 ## Citation
