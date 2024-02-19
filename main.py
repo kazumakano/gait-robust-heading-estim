@@ -10,7 +10,7 @@ import script.utility as util
 from script.data import DataModule
 
 
-def run(gpu_id: int, model_name: str, param: dict[str, util.Param] | str, split_file: str, ckpt_file: Optional[str] = None, result_dir_name: Optional[str] = None) -> None:
+def run(gpu_id: int, param: dict[str, util.Param] | str, split_file: str, ckpt_file: Optional[str] = None, result_dir_name: Optional[str] = None) -> None:
     torch.set_float32_matmul_precision("high")
 
     if isinstance(param, str):
@@ -41,7 +41,6 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model", choices=("bilstm", "cnn", "dualcnnlstm", "dualcnnxformer"), required=True, help="specify model", metavar="MODEL_NAME")
     parser.add_argument("-s", "--split_file", required=True, help="specify split file", metavar="PATH_TO_SPLIT_FILE")
     parser.add_argument("-g", "--gpu_id", default=0, type=int, help="specify GPU device ID", metavar="GPU_ID")
     parser.add_argument("-r", "--result_dir_name", help="specify result directory name", metavar="RESULT_DIR_NAME")
@@ -51,10 +50,10 @@ if __name__ == "__main__":
         parser.add_argument("-c", "--ckpt_file", help="specify checkpoint file", metavar="PATH_TO_CKPT_FILE")
         args = parser.parse_args()
 
-        run(args.gpu_id, args.model, args.param_file, args.split_file, args.ckpt_file, args.result_dir_name)
+        run(args.gpu_id, args.param_file, args.split_file, args.ckpt_file, args.result_dir_name)
 
     else:
         args = parser.parse_args()
         lines = sys.stdin.readlines()
 
-        run(args.gpu_id, args.model, json.loads(lines[1]), args.split_file, lines[3].rstrip(), args.result_dir_name)
+        run(args.gpu_id, json.loads(lines[1]), args.split_file, lines[3].rstrip(), args.result_dir_name)
