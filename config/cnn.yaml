@@ -2,6 +2,7 @@ batch_size: 512
 epoch: 100
 num_workers: 4
 
+arch: cnn
 conv_ch_1: 64
 conv_ch_2: 64
 conv_ch_3: 32

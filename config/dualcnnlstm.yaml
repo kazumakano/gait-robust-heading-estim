@@ -2,6 +2,7 @@ batch_size: 512
 epoch: 100
 num_workers: 4
 
+arch: dualcnnlstm
 conv_ch_l: 128
 conv_ch_s: 32
 conv_dp: 0.5

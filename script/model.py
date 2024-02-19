@@ -1,5 +1,6 @@
 import os.path as path
 import pickle
+from typing import Literal
 import numpy as np
 import pytorch_lightning as pl
 import torch
@@ -197,3 +198,16 @@ class DualCNNXformer(_BaseModule):
         output = self.imu_head(hidden)
 
         return output
+
+def get_model_cls(name: Literal["bilstm", "cnn", "dualcnnlstm", "dualcnnxformer"]) -> type[BiLSTM | CNN | DualCNNLSTM | DualCNNXformer]:
+    match name:
+        case "bilstm":
+            return BiLSTM
+        case "cnn":
+            return CNN
+        case "dualcnnlstm":
+            return DualCNNLSTM
+        case "dualcnnxformer":
+            return DualCNNXformer
+        case _:
+            raise Exception(f"unknown model {name} was specified")

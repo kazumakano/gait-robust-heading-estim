@@ -5,26 +5,17 @@ import pytorch_lightning as pl
 import torch
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
+import script.model as M
 import script.utility as util
 from script.data import DataModule
-from script.model import CNN, BiLSTM, DualCNNLSTM, DualCNNXformer
 
 
 def run(gpu_id: int, model_name: str, param: dict[str, util.Param] | str, split_file: str, ckpt_file: Optional[str] = None, result_dir_name: Optional[str] = None) -> None:
     torch.set_float32_matmul_precision("high")
 
-    match model_name:
-        case "bilstm":
-            model_cls = BiLSTM
-        case "cnn":
-            model_cls = CNN
-        case "dualcnnlstm":
-            model_cls = DualCNNLSTM
-        case "dualcnnxformer":
-            model_cls = DualCNNXformer
-
     if isinstance(param, str):
         param = util.load_param(param)
+    model_cls = M.get_model_cls(param["arch"])
 
     datamodule = DataModule(param, split_file)
     trainer = pl.Trainer(

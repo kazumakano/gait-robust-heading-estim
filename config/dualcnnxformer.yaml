@@ -2,6 +2,7 @@ batch_size: 512
 epoch: 100
 num_workers: 4
 
+arch: dualcnnxformer
 conv_ks_s: 9
 xformer_d_ff: 64
 xformer_d_model: 64
