@@ -29,11 +29,9 @@ def run(gpu_id: int, param: dict[str, util.Param] | str, split_file: str, ckpt_f
     if ckpt_file is None:
         model = model_cls(param)
         trainer.fit(model, datamodule=datamodule)
-        model.load_from_checkpoint(glob(path.join(trainer.log_dir, "checkpoints/", "epoch=*-step=*.ckpt"))[0])
-    else:
-        model = model_cls.load_from_checkpoint(ckpt_file, param=param)
+        ckpt_file = glob(path.join(trainer.log_dir, "checkpoints/", "epoch=*-step=*.ckpt"))[0]
 
-    trainer.test(model=model, datamodule=datamodule)
+    trainer.test(model=model_cls.load_from_checkpoint(ckpt_file), datamodule=datamodule)
 
 if __name__ == "__main__":
     import argparse
