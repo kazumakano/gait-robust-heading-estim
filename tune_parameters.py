@@ -39,12 +39,12 @@ def _try(model_name: str, param: dict[str, util.Param], split_file: str) -> None
             model_cls = DualCNNXformer
 
     trainer = pl.Trainer(
+        accelerator="gpu",
+        devices=1,
         logger=TensorBoardLogger(path.join(tune.get_trial_dir(), "log/"), name=None, default_hp_metric=False),
         callbacks=[BestValLossReporter(), ModelCheckpoint(monitor="validation_loss", save_last=True)],
-        devices=1,
-        enable_progress_bar=False,
         max_epochs=param["epoch"],
-        accelerator="gpu",
+        enable_progress_bar=False,
         enable_model_summary=False
     )
 

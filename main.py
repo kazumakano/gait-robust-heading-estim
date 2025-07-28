@@ -19,11 +19,11 @@ def run(gpu_id: int, param: dict[str, util.Param] | str, split_file: str, ckpt_f
 
     datamodule = DataModule(param, split_file)
     trainer = pl.Trainer(
+        accelerator="gpu",
+        devices=[gpu_id],
         logger=TensorBoardLogger(util.get_result_dir(result_dir_name), name=None, default_hp_metric=False),
         callbacks=ModelCheckpoint(monitor="validation_loss", save_last=True),
-        devices=[gpu_id],
-        max_epochs=param["epoch"],
-        accelerator="gpu"
+        max_epochs=param["epoch"]
     )
 
     if ckpt_file is None:
